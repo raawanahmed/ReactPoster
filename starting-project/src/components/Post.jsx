@@ -1,4 +1,5 @@
-import classes from "./Post.module.css";
+import classes from './Post.module.css';
+
 function Post({ author, body }) {
   return (
     <li className={classes.post}>

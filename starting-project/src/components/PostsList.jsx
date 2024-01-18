@@ -1,35 +1,53 @@
-import NewPost from "./NewPost";
-import Post from "./Post";
-import { useState } from "react";
-import classes from "./PostsList.module.css";
-import Modal from "./Modal";
+import { useState } from 'react';
+
+import Post from './Post';
+import NewPost from './NewPost';
+import Modal from './Modal';
+import classes from './PostsList.module.css';
+
 function PostsList() {
-  const [enteredBody, setEnteredBody] = useState("");
-  const [name, setName] = useState("");
   const [modalIsVisible, setModalIsVisible] = useState(true);
-  const handleOnBodyChange = (event) => {
-    setEnteredBody(event.target.value);
-  };
-  const handleOnNameChange = (event) => {
-    setName(event.target.value);
-  };
-  const toggleVisibility = () => {
+  const [enteredBody, setEnteredBody] = useState('');
+  const [enteredAuthor, setEnteredAuthor] = useState('');
+
+  function hideModalHandler() {
     setModalIsVisible(false);
-  };
+  }
+
+  function bodyChangeHandler(event) {
+    setEnteredBody(event.target.value);
+  }
+
+  function authorChangeHandler(event) {
+    setEnteredAuthor(event.target.value);
+  }
+
+  // let modalContent;
+
+  // if (modalIsVisible) {
+  //   modalContent = (
+  // <Modal onClose={hideModalHandler}>
+  //   <NewPost
+  //     onBodyChange={bodyChangeHandler}
+  //     onAuthorChange={authorChangeHandler}
+  //   />
+  // </Modal>
+  //   );
+  // }
+
   return (
     <>
-      <Modal
-        changeModalVisibility={toggleVisibility}
-        isVisible={modalIsVisible}
-      >
-        <NewPost
-          onBodyChange={handleOnBodyChange}
-          onNameChange={handleOnNameChange}
-        />
-      </Modal>
+      {modalIsVisible && (
+        <Modal onClose={hideModalHandler}>
+          <NewPost
+            onBodyChange={bodyChangeHandler}
+            onAuthorChange={authorChangeHandler}
+          />
+        </Modal>
+      )}
       <ul className={classes.posts}>
-        <Post author={name} body={enteredBody} />
-        <Post author="rewrew" body="lessgo" />
+        <Post author={enteredAuthor} body={enteredBody} />
+        <Post author="Manuel" body="Check out the full course!" />
       </ul>
     </>
   );

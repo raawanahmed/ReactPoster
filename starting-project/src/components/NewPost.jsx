@@ -1,16 +1,18 @@
-import classes from "./NewPost.module.css";
-function NewPost({ onBodyChange, onNameChange }) {
+import classes from './NewPost.module.css';
+
+function NewPost(props) {
   return (
     <form className={classes.form}>
       <p>
-        <label htmlFor="body">Text </label>
-        <textarea id="body" rows={3} required onChange={onBodyChange} />
+        <label htmlFor="body">Text</label>
+        <textarea id="body" required rows={3} onChange={props.onBodyChange}/>
       </p>
       <p>
-        <label htmlFor="name">Your Name </label>
-        <input type="text" id="name" required onChange={onNameChange} />
+        <label htmlFor="name">Your name</label>
+        <input type="text" id="name" required onChange={props.onAuthorChange} />
       </p>
     </form>
   );
 }
+
 export default NewPost;

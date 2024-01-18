@@ -1,13 +1,14 @@
-import classes from "./Modal.module.css";
+import classes from './Modal.module.css';
 
-function Modal({ children, changeModalVisibility, isVisible }) {
+function Modal({ children, onClose }) {
   return (
     <>
-      <div className={classes.backdrop} onClick={changeModalVisibility} />
-      <dialog open={isVisible} className={classes.modal}>
+      <div className={classes.backdrop} onClick={onClose} />
+      <dialog open className={classes.modal}>
         {children}
       </dialog>
     </>
   );
 }
+
 export default Modal;
